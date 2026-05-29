@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html class="light" lang="it"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Blog | AUTOSCUOLA DS DI ALDO DI STASIO</title>
+<meta name="description" content="News, consigli e aggiornamenti dal mondo della guida. Resta informato sulle novità del Codice della Strada con Autoscuola DS.">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+tailwind.config={darkMode:"class",theme:{extend:{"colors":{"surface-container-lowest":"#ffffff","surface-tint":"#495e8a","on-secondary-fixed":"#1a1c1c","on-primary-fixed-variant":"#314671","secondary":"#5d5f5f","secondary-fixed-dim":"#c6c6c7","surface-container-low":"#f5f3f7","on-primary-container":"#7084b3","on-tertiary-fixed-variant":"#5b4300","inverse-primary":"#b1c6f9","surface-variant":"#e3e2e6","tertiary-fixed-dim":"#fabd00","on-secondary-fixed-variant":"#454747","on-primary-fixed":"#001a42","on-error-container":"#93000a","on-primary":"#ffffff","tertiary-container":"#271b00","inverse-on-surface":"#f2f0f4","outline":"#75777f","on-secondary":"#ffffff","on-surface-variant":"#44474f","primary":"#00020a","secondary-fixed":"#e2e2e2","outline-variant":"#c5c6d0","tertiary-fixed":"#ffdf9e","on-tertiary":"#ffffff","on-error":"#ffffff","surface-container-highest":"#e3e2e6","surface-dim":"#dbd9dd","error-container":"#ffdad6","primary-container":"#001b44","on-tertiary-fixed":"#261a00","background":"#faf8fd","on-secondary-container":"#616363","on-tertiary-container":"#a87e00","surface-container":"#efedf1","surface-bright":"#faf8fd","surface":"#faf8fd","error":"#ba1a1a","inverse-surface":"#303033","tertiary":"#040200","primary-fixed":"#d8e2ff","on-surface":"#1b1b1f","primary-fixed-dim":"#b1c6f9","secondary-container":"#dfe0e0","surface-container-high":"#e9e7ec","on-background":"#1b1b1f"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"lg":"48px","xl":"80px","gutter":"24px","md":"24px","base":"8px","container-max":"1200px","sm":"12px","xs":"4px"},"fontFamily":{"label-sm":["Public Sans"],"body-md":["Public Sans"],"headline-lg":["Public Sans"],"body-lg":["Public Sans"],"label-bold":["Public Sans"],"headline-md":["Public Sans"],"display-lg":["Public Sans"]},"fontSize":{"label-sm":["12px",{"lineHeight":"16px","fontWeight":"500"}],"body-md":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-lg":["32px",{"lineHeight":"40px","fontWeight":"700"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"label-bold":["14px",{"lineHeight":"20px","fontWeight":"700"}],"headline-md":["24px",{"lineHeight":"32px","fontWeight":"600"}],"display-lg":["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"700"}]}}}}
+</script>
+<style>.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24}body{font-family:'Public Sans',sans-serif}.mobile-menu{display:none}.mobile-menu.active{display:flex}</style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- Header -->
+<header class="bg-surface-container-lowest full-width top-0 sticky z-50 border-b border-outline-variant">
+<div class="max-w-[1200px] mx-auto flex justify-between items-center h-20 px-gutter">
+<a href="index.html" class="font-headline-md text-headline-md font-bold text-primary no-underline">AUTOSCUOLA DS</a>
+<nav class="hidden md:flex items-center gap-md">
+<a class="font-label-bold text-label-bold uppercase tracking-wider text-secondary hover:text-primary transition-all duration-200" href="index.html">Home</a>
+<a class="font-label-bold text-label-bold uppercase tracking-wider text-secondary hover:text-primary transition-all duration-200" href="corsi.html">Corsi</a>
+<a class="font-label-bold text-label-bold uppercase tracking-wider text-secondary hover:text-primary transition-all duration-200" href="documenti.html">Documenti</a>
+<a class="font-label-bold text-label-bold uppercase tracking-wider text-primary border-b-2 border-primary pb-1" href="blog.html">Blog</a>
+<a class="font-label-bold text-label-bold uppercase tracking-wider text-secondary hover:text-primary transition-all duration-200" href="contatti.html">Contatti</a>
+</nav>
+<button class="md:hidden" onclick="document.getElementById('mobileMenu').classList.toggle('active')"><span class="material-symbols-outlined text-primary text-3xl">menu</span></button>
+<a href="contatti.html" class="hidden md:inline-block bg-primary text-on-primary font-label-bold text-label-bold py-sm px-md rounded-lg hover:opacity-90 active:scale-95 transition-all no-underline">CONTATTI</a>
+</div>
+<div id="mobileMenu" class="mobile-menu flex-col bg-surface-container-lowest border-t border-outline-variant px-gutter py-md gap-md md:hidden">
+<a class="font-label-bold uppercase tracking-wider text-secondary py-sm" href="index.html">Home</a>
+<a class="font-label-bold uppercase tracking-wider text-secondary py-sm" href="corsi.html">Corsi</a>
+<a class="font-label-bold uppercase tracking-wider text-secondary py-sm" href="documenti.html">Documenti</a>
+<a class="font-label-bold uppercase tracking-wider text-primary py-sm" href="blog.html">Blog</a>
+<a class="font-label-bold uppercase tracking-wider text-secondary py-sm" href="contatti.html">Contatti</a>
+</div>
+</header>
+<main class="flex-grow">
+<!-- Hero -->
+<section class="bg-surface-container-low py-xl">
+<div class="max-w-[1200px] mx-auto px-gutter text-center">
+<h1 class="font-display-lg text-display-lg text-primary mb-md">Insights e Aggiornamenti</h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-2xl mx-auto">Resta informato sulle ultime novità del Codice della Strada, ricevi consigli esperti per i tuoi esami e segui la vita dell'accademia.</p>
+</div>
+</section>
+<!-- Blog Grid -->
+<section class="max-w-[1200px] mx-auto px-gutter py-xl">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-md">
+<!-- Featured Article -->
+<article class="md:col-span-8 group bg-white border border-outline-variant overflow-hidden flex flex-col md:flex-row hover:shadow-xl transition-shadow duration-300">
+<div class="md:w-1/2 overflow-hidden h-64 md:h-full">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Interno scuola guida moderna" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCceliweVVt6JNg5sKnrTgeCiq5mVSdTRsLphhKXpqljLJjvKyFJl4uncnJmG9FiatXisrG2WWlwPhuR_N8ed_NeX1Mx0whc_8aXNMGge9EDo2TNVDoUC6BBIxBTNbfI9-ey5mhqzCa8YjqcGkkmVqmS4cN2VBDjCSCziGO6K4TS8f9ZdnLmXuelShn8SLHIJeTacSR4Hq2DSQIdpKwYues5REX6pz2hdheYy0Abo9uev6jcE3HPYjNQwXr21FXF1rJyc6Qx7nssJc"/>
+</div>
+<div class="md:w-1/2 p-md flex flex-col justify-center">
+<span class="inline-block bg-tertiary-fixed text-on-tertiary-fixed font-label-bold text-label-sm px-sm py-xs mb-sm rounded-sm uppercase tracking-wide">Novità Legislazione</span>
+<h2 class="font-headline-md text-headline-md text-primary mb-sm leading-tight">Nuovo Codice della Strada 2024: Cosa cambia per i neopatentati</h2>
+<p class="font-body-md text-body-md text-secondary mb-md">Un'analisi dettagliata delle restrizioni e delle nuove normative introdotte per chi ha appena conseguito la patente.</p>
+<a class="inline-flex items-center gap-xs font-label-bold text-label-bold text-primary group-hover:underline" href="#">Leggi di più <span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
+</div>
+</article>
+<!-- Sidebar -->
+<div class="md:col-span-4 flex flex-col gap-md">
+<div class="bg-primary-container p-md border border-outline-variant rounded-lg">
+<h3 class="font-headline-md text-headline-md text-on-primary-fixed mb-sm">Preparati all'Esame</h3>
+<p class="font-body-md text-on-primary-container mb-md">Scarica la nostra guida gratuita sui quiz ministeriali più frequenti.</p>
+<button class="w-full bg-on-primary-fixed text-primary-fixed font-label-bold text-label-bold py-sm px-md rounded-lg">Scarica la Guida</button>
+</div>
+<article class="bg-white border border-outline-variant p-md hover:shadow-md transition-shadow">
+<span class="inline-block bg-tertiary-fixed text-on-tertiary-fixed font-label-bold text-label-sm px-sm py-xs mb-sm rounded-sm">Consigli Tecnici</span>
+<h3 class="font-label-bold text-label-bold text-primary mb-xs">Come gestire l'ansia da esame pratico</h3>
+<a class="text-label-bold text-primary text-sm hover:underline" href="#">Leggi articolo</a>
+</article>
+<article class="bg-white border border-outline-variant p-md hover:shadow-md transition-shadow">
+<span class="inline-block bg-tertiary-fixed text-on-tertiary-fixed font-label-bold text-label-sm px-sm py-xs mb-sm rounded-sm">Eventi Scuola</span>
+<h3 class="font-label-bold text-label-bold text-primary mb-xs">Open Day: Prova i nostri simulatori 3D</h3>
+<a class="text-label-bold text-primary text-sm hover:underline" href="#">Vedi dettagli</a>
+</article>
+</div>
+<!-- Card Row -->
+<article class="md:col-span-4 bg-white border border-outline-variant hover:shadow-lg transition-shadow group">
+<div class="aspect-video overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Istruttore con allievo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVel4cVin_JrktyttqbMlQqb68ifJZbSXel7uBLODkCgOfj3mSWrvgowSva0ka2RjncvgW70X6DHZEFAMZDLMEWJRwUzCexSfIVrqAa3rreRNOyJRs4JH3QHa7tYI4EBmhlnvab2EqeyO9ivV9RHvFSU_fo7fW29TbEDKeTu1cCzAOlMKLdH0KoSD47XjK_ZEuFyb4Rvvnl9I9SG2xCj3LLsKRkFL70J7JAlZOTyD8YJGaT7oVJ8bXZdFrZ5I_om6Ei-r9L47D-hY"/></div>
+<div class="p-md">
+<span class="inline-block bg-tertiary-fixed text-on-tertiary-fixed font-label-bold text-label-sm px-sm py-xs mb-sm rounded-sm uppercase tracking-wide">Didattica</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-sm">I 5 errori più comuni all'esame pratico</h3>
+<p class="font-body-md text-secondary mb-md">Evita queste trappole comuni durante la prova su strada.</p>
+<a class="inline-flex items-center gap-xs font-label-bold text-primary group-hover:underline" href="#">Leggi di più <span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
+</div>
+</article>
+<article class="md:col-span-4 bg-white border border-outline-variant hover:shadow-lg transition-shadow group">
+<div class="aspect-video overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Documenti patente" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjBK9G-OouiTa2arox0FsyucvRScfwtXI9_-7aSTk2uQGIxQkkZ7qKrT3wCNNd1NlIgOgz91uLoBBlSh802BOfpsOplWqdXrOfIY5mxXbYeTPzufNq8JPMQXZMQHldMLVR5xAxOQNKi7yYmCoJimeb7I34O29Bs9mva7EZMbn3cwedyAJmQyCgJWfmam-wBuLwIA2ulW4TOpU2TiX11ct6YIRkhZ5LIfNv69fpB4360LPIbFspkFuFnYeDN6Ctl2v-s6jrrKDSRMI"/></div>
+<div class="p-md">
+<span class="inline-block bg-tertiary-fixed text-on-tertiary-fixed font-label-bold text-label-sm px-sm py-xs mb-sm rounded-sm uppercase tracking-wide">Burocrazia</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-sm">Rinnovo patente: La guida completa</h3>
+<p class="font-body-md text-secondary mb-md">Scadenze, documenti e visite mediche spiegate in modo semplice.</p>
+<a class="inline-flex items-center gap-xs font-label-bold text-primary group-hover:underline" href="#">Leggi di più <span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
+</div>
+</article>
+<article class="md:col-span-4 bg-white border border-outline-variant hover:shadow-lg transition-shadow group">
+<div class="aspect-video overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Guida notturna cruscotto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqiy4VDFBoitqKe8w8n9cIC5N8rQijJuASmVd_MKJh4STfZIOGPtTi93ebdnrtzKTb-AubCejp3JyVp6Okm4ENFPKFW50J4eWjfp7XsHf_BT-NHsEBoiG5-27Nqbxym_H7tXSmZDY63coZcJ2J4kbovg2ltVCHUDMkp8LOnND1wLdxPsiTHSU4tJVYnq_NL3NFcgLi7FEEw7pYXZptozrxp8l9ZM5iIlGuhS9Xl2jDjnqnamURFU_hqqbB4yYVTb6vaf_jOGvsFKk"/></div>
+<div class="p-md">
+<span class="inline-block bg-tertiary-fixed text-on-tertiary-fixed font-label-bold text-label-sm px-sm py-xs mb-sm rounded-sm uppercase tracking-wide">Sicurezza</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-sm">Guida notturna: consigli per la sicurezza</h3>
+<p class="font-body-md text-secondary mb-md">Come affrontare la visibilità ridotta durante i viaggi di notte.</p>
+<a class="inline-flex items-center gap-xs font-label-bold text-primary group-hover:underline" href="#">Leggi di più <span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
+</div>
+</article>
+</div>
+</section>
+<!-- Newsletter -->
+<section class="bg-surface-container py-xl">
+<div class="max-w-[800px] mx-auto px-gutter text-center border-2 border-dashed border-outline-variant p-lg">
+<span class="material-symbols-outlined text-primary text-[48px] mb-md">mail</span>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-sm">Rimani aggiornato</h2>
+<p class="font-body-md text-secondary mb-lg">Ricevi le ultime news sul codice della strada nella tua email.</p>
+<form class="flex flex-col md:flex-row gap-base"><input class="flex-grow border border-outline px-md py-sm rounded-lg focus:ring-2 focus:ring-primary outline-none" placeholder="La tua email" type="email"/><button class="bg-primary text-on-primary font-label-bold px-lg py-sm rounded-lg hover:opacity-90 active:scale-95 transition-all" type="submit">Iscriviti</button></form>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-primary full-width border-t border-outline-variant">
+<div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-xl py-lg px-gutter">
+<div><div class="font-headline-md text-headline-md font-bold text-on-primary mb-md">AUTOSCUOLA DS</div><p class="font-body-md text-secondary-fixed-dim">Leader nella formazione stradale, uniamo tradizione e innovazione.</p></div>
+<div><h4 class="font-label-bold text-on-primary mb-md uppercase tracking-wider">Link Utili</h4><ul class="space-y-sm"><li><a class="text-secondary-fixed-dim hover:text-tertiary-fixed transition-colors" href="privacy.html">Privacy Policy</a></li><li><a class="text-secondary-fixed-dim hover:text-tertiary-fixed transition-colors" href="corsi.html">Corsi</a></li><li><a class="text-secondary-fixed-dim hover:text-tertiary-fixed transition-colors" href="contatti.html">Contatti</a></li></ul></div>
+<div class="flex flex-col justify-between"><p class="text-secondary-fixed-dim">© 2025 AUTOSCUOLA DS DI ALDO DI STASIO.</p></div>
+</div>
+</footer>
+</body></html>
