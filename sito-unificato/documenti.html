@@ -148,6 +148,20 @@ function updateProgress() {
   label.textContent = 'Completamento profilo: ' + pct + '%';
 }
 
+// Clear error styles when file selected
+document.getElementById('inputFirma').addEventListener('change', function() {
+  var dz = document.getElementById('dropZoneFirma');
+  dz.style.borderColor = '';
+  dz.style.boxShadow = '';
+  dz.classList.remove('dropzone-error');
+});
+document.getElementById('inputFoto').addEventListener('change', function() {
+  var dz = document.getElementById('dropZoneFoto');
+  dz.style.borderColor = '';
+  dz.style.boxShadow = '';
+  dz.classList.remove('dropzone-error');
+});
+
 // Drag and drop
 ['dropZoneFirma', 'dropZoneFoto'].forEach(function(id) {
   const zone = document.getElementById(id);
@@ -176,8 +190,71 @@ function updateProgress() {
   });
 });
 
+function clearErrors() {
+  document.querySelectorAll('#formDocumenti input').forEach(function(el) {
+    el.style.borderColor = '';
+    el.style.boxShadow = '';
+  });
+  document.querySelectorAll('.dropzone-error').forEach(function(el) {
+    el.classList.remove('dropzone-error');
+  });
+}
+
+function showError(el, msg) {
+  el.style.borderColor = '#ba1a1a';
+  el.style.boxShadow = '0 0 0 2px rgba(186,26,26,0.3)';
+}
+
 document.getElementById('formDocumenti').addEventListener('submit', function(e) {
   e.preventDefault();
+  clearErrors();
+
+  const form = this;
+  const fields = [
+    { el: form.querySelector('input[name="nome"]'), label: 'Nome' },
+    { el: form.querySelector('input[name="cognome"]'), label: 'Cognome' },
+    { el: form.querySelector('input[name="telefono"]'), label: 'Telefono' },
+    { el: form.querySelector('input[name="residenza"]'), label: 'Residenza' },
+    { el: form.querySelector('input[name="privacy"]'), label: 'privacy' }
+  ];
+
+  var missing = [];
+
+  fields.forEach(function(f) {
+    if (f.el.type === 'checkbox') {
+      if (!f.el.checked) {
+        missing.push('Consenso privacy');
+        showError(f.el, '');
+      }
+    } else if (f.el.value.trim() === '') {
+      missing.push(f.label);
+      showError(f.el, '');
+    }
+  });
+
+  var firmaInput = document.getElementById('inputFirma');
+  var fotoInput = document.getElementById('inputFoto');
+  var dropFirma = document.getElementById('dropZoneFirma');
+  var dropFoto = document.getElementById('dropZoneFoto');
+
+  if (firmaInput.files.length === 0) {
+    missing.push('Firma digitale');
+    dropFirma.classList.add('dropzone-error');
+    dropFirma.style.borderColor = '#ba1a1a';
+    dropFirma.style.boxShadow = '0 0 0 2px rgba(186,26,26,0.3)';
+  }
+  if (fotoInput.files.length === 0) {
+    missing.push('Fototessera');
+    dropFoto.classList.add('dropzone-error');
+    dropFoto.style.borderColor = '#ba1a1a';
+    dropFoto.style.boxShadow = '0 0 0 2px rgba(186,26,26,0.3)';
+  }
+
+  if (missing.length > 0) {
+    alert('Campi mancanti:\n- ' + missing.join('\n- ') + '\n\nCompila tutti i campi evidenziati in rosso.');
+    return;
+  }
+
   const btn = document.querySelector('button[form="formDocumenti"]');
   btn.disabled = true;
   btn.textContent = 'Invio in corso...';
