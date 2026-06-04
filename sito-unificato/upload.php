@@ -1,16 +1,6 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 
-require_once __DIR__ . '/config/db.php';
-
-try {
-    $pdo = getDBConnection();
-} catch (PDOException $e) {
-    http_response_code(500);
-    echo json_encode(['success' => false, 'error' => 'Errore di connessione al database']);
-    exit;
-}
-
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo json_encode(['success' => false, 'error' => 'Metodo non consentito']);
@@ -35,55 +25,70 @@ if ($privacy !== 'on') {
     exit;
 }
 
-$firmaBlob = null;
+$firmaPath = null;
 if (isset($_FILES['firma']) && $_FILES['firma']['error'] === UPLOAD_ERR_OK) {
-    $firmaBlob = file_get_contents($_FILES['firma']['tmp_name']);
+    $firmaPath = $_FILES['firma']['tmp_name'];
 }
 
-$fotoBlob = null;
+$fotoPath = null;
 if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
-    $fotoBlob = file_get_contents($_FILES['foto']['tmp_name']);
+    $fotoPath = $_FILES['foto']['tmp_name'];
 }
+
+$id = uniqid('doc-');
+
+$to = 'admin@trybox.it';
+$subject = 'Nuova documentazione ricevuta - ID #' . $id;
+
+$boundary = md5(time());
+
+$headers = "From: noreply@autoscuolads.it\r\n";
+$headers .= "Reply-To: noreply@autoscuolads.it\r\n";
+$headers .= "MIME-Version: 1.0\r\n";
+$headers .= "Content-Type: multipart/mixed; boundary=\"$boundary\"\r\n";
+
+$body = "--$boundary\r\n";
+$body .= "Content-Type: text/plain; charset=UTF-8\r\n";
+$body .= "Content-Transfer-Encoding: 8bit\r\n\r\n";
+$body .= "Nuova documentazione caricata:\n\n";
+$body .= "Nome: $nome\n";
+$body .= "Cognome: $cognome\n";
+$body .= "Telefono: $telefono\n";
+$body .= "Residenza: $residenza\n\n";
+$body .= "Data upload: " . date('d/m/Y H:i') . "\n";
+$body .= "ID Ricevuta: $id\n";
+
+if ($firmaPath && file_exists($firmaPath)) {
+    $firmaContent = chunk_split(base64_encode(file_get_contents($firmaPath)));
+    $firmaName = $_FILES['firma']['name'];
+    $body .= "\r\n--$boundary\r\n";
+    $body .= "Content-Type: image/jpeg; name=\"$firmaName\"\r\n";
+    $body .= "Content-Disposition: attachment; filename=\"$firmaName\"\r\n";
+    $body .= "Content-Transfer-Encoding: base64\r\n\r\n";
+    $body .= $firmaContent;
+}
+
+if ($fotoPath && file_exists($fotoPath)) {
+    $fotoContent = chunk_split(base64_encode(file_get_contents($fotoPath)));
+    $fotoName = $_FILES['foto']['name'];
+    $body .= "\r\n--$boundary\r\n";
+    $body .= "Content-Type: image/jpeg; name=\"$fotoName\"\r\n";
+    $body .= "Content-Disposition: attachment; filename=\"$fotoName\"\r\n";
+    $body .= "Content-Transfer-Encoding: base64\r\n\r\n";
+    $body .= $fotoContent;
+}
+
+$body .= "\r\n--$boundary--";
 
 try {
-    $pdo->beginTransaction();
-
-    $sql = "INSERT INTO documenti (nome, cognome, telefono, residenza, firma, fototessera, data_upload)
-            VALUES (:nome, :cognome, :telefono, :residenza, :firma, :fototessera, NOW())";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':nome', $nome);
-    $stmt->bindParam(':cognome', $cognome);
-    $stmt->bindParam(':telefono', $telefono);
-    $stmt->bindParam(':residenza', $residenza);
-    $stmt->bindParam(':firma', $firmaBlob, PDO::PARAM_LOB);
-    $stmt->bindParam(':fototessera', $fotoBlob, PDO::PARAM_LOB);
-    $stmt->execute();
-
-    $id = $pdo->lastInsertId();
-
-    $pdo->commit();
-
-    $to = 'admin@trybox.it';
-    $subject = 'Nuova documentazione ricevuta - ID #' . $id;
-    $body = "Nuova documentazione caricata:\n\n";
-    $body .= "Nome: $nome\n";
-    $body .= "Cognome: $cognome\n";
-    $body .= "Telefono: $telefono\n";
-    $body .= "Residenza: $residenza\n\n";
-    $body .= "Data upload: " . date('d/m/Y H:i') . "\n";
-    $body .= "ID Ricevuta: $id\n";
-    $headers = "From: noreply@autoscuolads.it\r\n";
-    $headers .= "Reply-To: noreply@autoscuolads.it\r\n";
-    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-
-    mail($to, $subject, $body, $headers);
-
-    echo json_encode(['success' => true, 'id' => (int)$id]);
-} catch (PDOException $e) {
-    if ($pdo->inTransaction()) {
-        $pdo->rollBack();
+    $sent = mail($to, $subject, $body, $headers);
+    if ($sent) {
+        echo json_encode(['success' => true, 'id' => $id]);
+    } else {
+        http_response_code(500);
+        echo json_encode(['success' => false, 'error' => 'Invio email fallito']);
     }
+} catch (Exception $e) {
     http_response_code(500);
-    echo json_encode(['success' => false, 'error' => 'Errore durante il salvataggio: ' . $e->getMessage()]);
-    exit;
+    echo json_encode(['success' => false, 'error' => 'Errore: ' . $e->getMessage()]);
 }
