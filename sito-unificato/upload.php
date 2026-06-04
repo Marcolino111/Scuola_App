@@ -37,7 +37,7 @@ if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
 
 $id = uniqid('doc-');
 
-$to = 'admin@trybox.it';
+$to = 'info@trybox.it';
 $subject = 'Nuova documentazione ricevuta - ID #' . $id;
 
 $boundary = md5(time());
