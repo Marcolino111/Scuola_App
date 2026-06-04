@@ -21,10 +21,17 @@ $nome = trim($_POST['nome'] ?? '');
 $cognome = trim($_POST['cognome'] ?? '');
 $telefono = trim($_POST['telefono'] ?? '');
 $residenza = trim($_POST['residenza'] ?? '');
+$privacy = $_POST['privacy'] ?? '';
 
 if ($nome === '' || $cognome === '' || $telefono === '' || $residenza === '') {
     http_response_code(400);
     echo json_encode(['success' => false, 'error' => 'Tutti i campi anagrafici sono obbligatori']);
+    exit;
+}
+
+if ($privacy !== 'on') {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'error' => 'Devi accettare il trattamento dei dati personali']);
     exit;
 }
 
@@ -55,6 +62,21 @@ try {
     $id = $pdo->lastInsertId();
 
     $pdo->commit();
+
+    $to = 'autoscuolads.ciampino@gmail.com';
+    $subject = 'Nuova documentazione ricevuta - ID #' . $id;
+    $body = "Nuova documentazione caricata:\n\n";
+    $body .= "Nome: $nome\n";
+    $body .= "Cognome: $cognome\n";
+    $body .= "Telefono: $telefono\n";
+    $body .= "Residenza: $residenza\n\n";
+    $body .= "Data upload: " . date('d/m/Y H:i') . "\n";
+    $body .= "ID Ricevuta: $id\n";
+    $headers = "From: noreply@autoscuolads.it\r\n";
+    $headers .= "Reply-To: noreply@autoscuolads.it\r\n";
+    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+
+    mail($to, $subject, $body, $headers);
 
     echo json_encode(['success' => true, 'id' => (int)$id]);
 } catch (PDOException $e) {
