@@ -63,7 +63,7 @@ try {
 
     $pdo->commit();
 
-    $to = 'autoscuolads.ciampino@gmail.com';
+    $to = 'admin@trybox.it';
     $subject = 'Nuova documentazione ricevuta - ID #' . $id;
     $body = "Nuova documentazione caricata:\n\n";
     $body .= "Nome: $nome\n";
