@@ -80,8 +80,10 @@ try {
 
     echo json_encode(['success' => true, 'id' => (int)$id]);
 } catch (PDOException $e) {
-    $pdo->rollBack();
+    if ($pdo->inTransaction()) {
+        $pdo->rollBack();
+    }
     http_response_code(500);
-    echo json_encode(['success' => false, 'error' => 'Errore durante il salvataggio']);
+    echo json_encode(['success' => false, 'error' => 'Errore durante il salvataggio: ' . $e->getMessage()]);
     exit;
 }
