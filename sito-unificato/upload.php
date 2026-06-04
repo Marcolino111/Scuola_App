@@ -38,7 +38,7 @@ if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
 $id = uniqid('doc-');
 
 $to = 'info@trybox.it';
-$subject = 'Documentazione per rinnovo Patente';
+$subject = 'Documentazione per rinnovo Patente - ID #' . $id;
 
 $boundary = md5(time());
 
